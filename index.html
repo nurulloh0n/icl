@@ -8,46 +8,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --board-dark:#211b15;
-    --board-dark-2:#2b241c;
+    --bg:#0f1e15;
+    --bg-2:#16301f;
+    --bg-3:#1c3a26;
     --square-light:#efe6d3;
-    --clock-red:#c6402b;
-    --clock-red-dim:#7d2a1e;
-    --brass:#b08d46;
-    --brass-dim:#7a6534;
-    --ink:#f7f2e6;
-    --ink-dim:#c9beac;
-    --line: rgba(247,242,230,0.14);
+    --gold:#cda449;
+    --gold-bright:#e8c874;
+    --gold-dim:#7c6531;
+    --ink:#f5f1e6;
+    --ink-dim:#adbcac;
+    --line: rgba(245,241,230,0.13);
     --radius: 2px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--board-dark);
+    background:var(--bg);
     color:var(--ink);
     font-family:'IBM Plex Sans', sans-serif;
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit;}
+  img{max-width:100%; display:block;}
   .mono{font-family:'IBM Plex Mono', monospace;}
   .display{font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; letter-spacing:0.01em;}
 
-  ::selection{background:var(--clock-red); color:var(--ink);}
-  :focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+  ::selection{background:var(--gold); color:var(--bg);}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
 
   .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
 
   /* ---------- NAV ---------- */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(33,27,21,0.92);
+    background:rgba(15,30,21,0.92);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
   }
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 28px;}
   .logo{display:flex; align-items:center; gap:10px; font-family:'Big Shoulders Display',sans-serif; font-weight:900; font-size:22px; letter-spacing:0.02em; text-transform:uppercase;}
-  .logo .sq{width:16px;height:16px; background:repeating-conic-gradient(var(--square-light) 0% 25%, var(--board-dark-2) 0% 50%) 0/8px 8px; border:1px solid var(--line);}
+  .logo img{width:32px; height:32px; border-radius:50%; object-fit:cover; border:1px solid var(--gold-dim);}
   .navlinks{display:flex; gap:28px; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; font-weight:500; color:var(--ink-dim);}
   .navlinks a{text-decoration:none; transition:color .15s;}
   .navlinks a:hover{color:var(--ink);}
@@ -58,21 +59,21 @@
     padding:11px 20px; font-size:13px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;
     text-decoration:none; border-radius:var(--radius); border:1px solid transparent; cursor:pointer;
     font-family:'IBM Plex Sans',sans-serif;
-    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease, color .15s ease;
   }
   .btn:hover{transform:translateY(-1px);}
-  .btn-primary{background:var(--clock-red); color:var(--ink);}
-  .btn-primary:hover{background:#d94b32;}
+  .btn-primary{background:var(--gold); color:var(--bg);}
+  .btn-primary:hover{background:var(--gold-bright);}
   .btn-ghost{border-color:var(--line); color:var(--ink);}
-  .btn-ghost:hover{border-color:var(--brass); color:var(--brass);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
 
   /* ---------- HERO ---------- */
   .hero{
     position:relative; overflow:hidden;
-    padding:96px 0 72px;
+    padding:88px 0 72px;
     background:
-      radial-gradient(ellipse 900px 500px at 80% -10%, rgba(176,141,70,0.14), transparent 60%),
-      var(--board-dark);
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(205,164,73,0.14), transparent 60%),
+      var(--bg);
     border-bottom:1px solid var(--line);
   }
   .hero-grid{
@@ -81,24 +82,30 @@
       repeating-linear-gradient(0deg, var(--square-light) 0 1px, transparent 1px 12.5%),
       repeating-linear-gradient(90deg, var(--square-light) 0 1px, transparent 1px 12.5%);
   }
+  .hero-inner{display:flex; flex-direction:column; align-items:center; text-align:center;}
+  .hero-logo{
+    width:132px; height:132px; border-radius:50%; object-fit:cover;
+    border:2px solid var(--gold); margin-bottom:30px;
+    box-shadow:0 0 0 8px rgba(205,164,73,0.08), 0 20px 60px rgba(0,0,0,0.4);
+  }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
     font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
-    color:var(--brass); margin-bottom:22px;
+    color:var(--gold); margin-bottom:22px;
   }
-  .eyebrow::before{content:"●"; color:var(--clock-red); font-size:9px;}
+  .eyebrow::before{content:"●"; color:var(--gold-bright); font-size:9px;}
   .hero h1{
-    font-size:clamp(40px, 7.2vw, 86px);
-    line-height:0.96;
+    font-size:clamp(36px, 6.4vw, 74px);
+    line-height:0.98;
     font-weight:900;
     margin:0 0 26px;
-    max-width:14ch;
+    max-width:18ch;
   }
-  .hero h1 .red{color:var(--clock-red);}
+  .hero h1 .gold-text{color:var(--gold-bright);}
   .hero p.lead{
-    font-size:18px; line-height:1.6; color:var(--ink-dim); max-width:52ch; margin:0 0 36px;
+    font-size:18px; line-height:1.6; color:var(--ink-dim); max-width:52ch; margin:0 auto 36px;
   }
-  .hero-cta{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:64px;}
+  .hero-cta{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:64px; justify-content:center;}
 
   /* Blitz clock signature element */
   .clock-panel{
@@ -109,8 +116,8 @@
   .clock-side + .clock-side{border-left:1px solid var(--line);}
   .clock-side .board-tag{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; color:var(--ink-dim); text-transform:uppercase; margin-bottom:8px;}
   .clock-side .time{font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:34px; letter-spacing:0.02em;}
-  .clock-side.active .time{color:var(--clock-red);}
-  .clock-side.active .board-tag{color:var(--clock-red);}
+  .clock-side.active .time{color:var(--gold-bright);}
+  .clock-side.active .board-tag{color:var(--gold-bright);}
   .clock-flag{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim); margin-top:10px; letter-spacing:0.05em;}
   @media (prefers-reduced-motion: reduce){
     .time{transition:none;}
@@ -128,42 +135,114 @@
   /* ---------- MISSION / PILLARS ---------- */
   .pillars{display:grid; gap:1px; background:var(--line); border:1px solid var(--line); grid-template-columns:1fr;}
   @media(min-width:760px){.pillars{grid-template-columns:repeat(3,1fr);}}
-  .pillar{background:var(--board-dark-2); padding:34px 30px;}
-  .pillar .num{font-family:'IBM Plex Mono',monospace; color:var(--brass); font-size:13px; letter-spacing:0.1em; margin-bottom:18px;}
+  .pillar{background:var(--bg-2); padding:34px 30px;}
+  .pillar .num{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:13px; letter-spacing:0.1em; margin-bottom:18px;}
   .pillar h3{font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; font-size:24px; font-weight:700; margin:0 0 12px;}
   .pillar p{color:var(--ink-dim); font-size:15px; line-height:1.6; margin:0;}
 
-  /* ---------- HOW IT WORKS (board 1/2/3) ---------- */
-  .boards{background:var(--board-dark-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .board-row{display:grid; grid-template-columns:1fr; border-top:1px solid var(--line);}
-  .board-row:first-of-type{border-top:none;}
-  @media(min-width:760px){.board-row{grid-template-columns:200px 1fr;}}
-  .board-label{
-    padding:34px 28px; display:flex; align-items:center; gap:14px;
-    border-bottom:1px solid var(--line);
+  /* ---------- PAST EVENTS SLIDER ---------- */
+  .slider-wrap{position:relative;}
+  .slider{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:4px 4px 8px; margin:0 -4px; scrollbar-width:none; -ms-overflow-style:none;
   }
-  @media(min-width:760px){.board-label{border-bottom:none; border-right:1px solid var(--line);}}
-  .board-chip{
+  .slider::-webkit-scrollbar{display:none;}
+  .slide{
+    flex:0 0 auto; width:320px; scroll-snap-align:start;
+    background:var(--bg-2); border:1px solid var(--line);
+  }
+  .slide .thumb{width:100%; height:210px; object-fit:cover; border-bottom:1px solid var(--line);}
+  .slide-body{padding:22px 24px;}
+  .slide-tag{
+    display:flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:14px;
+  }
+  .slide h3{font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; font-size:21px; font-weight:700; margin:0 0 8px;}
+  .slide p{color:var(--ink-dim); font-size:14px; line-height:1.6; margin:0;}
+  .slider-controls{display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-top:20px;}
+  .slider-dots{display:flex; gap:6px; margin-right:auto;}
+  .slider-dots span{width:6px; height:6px; border-radius:50%; background:var(--line); transition:background .2s;}
+  .slider-dots span.on{background:var(--gold);}
+  .slider-btn{
+    width:44px; height:44px; border:1px solid var(--line); background:transparent; color:var(--ink);
+    cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .15s, color .15s;
+  }
+  .slider-btn:hover{border-color:var(--gold); color:var(--gold);}
+
+  /* ---------- HOW IT WORKS (image left / steps right) ---------- */
+  .how-section{background:var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:0;}
+  .how-grid{display:grid; grid-template-columns:1fr;}
+  @media(min-width:860px){.how-grid{grid-template-columns:1fr 1fr; min-height:560px;}}
+  .how-image{
+    background-image:url('imgs/how-it-works.jpg');
+    background-size:cover; background-position:center;
+    min-height:280px; position:relative; border-bottom:1px solid var(--line);
+  }
+  .how-image::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(15,30,21,0) 50%, rgba(15,30,21,0.55) 100%);
+  }
+  @media(min-width:860px){
+    .how-image{border-bottom:none; border-right:1px solid var(--line);}
+    .how-image::after{background:linear-gradient(90deg, rgba(15,30,21,0) 60%, rgba(15,30,21,0.35) 100%);}
+  }
+  .how-steps{padding:56px 40px;}
+  @media(min-width:860px){.how-steps{padding:64px 48px;}}
+  .how-steps .section-head{margin-bottom:36px;}
+  .how-step{display:flex; gap:20px; padding:26px 0; border-top:1px solid var(--line);}
+  .how-step:first-of-type{border-top:none; padding-top:0;}
+  .how-chip{
     width:44px; height:44px; flex:0 0 auto; display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:14px; border:1px solid var(--brass); color:var(--brass);
+    font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:14px; border:1px solid var(--gold); color:var(--gold);
   }
-  .board-label .lbl{font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; font-size:19px; font-weight:700; letter-spacing:0.02em;}
-  .board-body{padding:30px 28px;}
-  .board-body h4{margin:0 0 8px; font-size:18px; font-weight:600;}
-  .board-body p{margin:0; color:var(--ink-dim); font-size:15.5px; line-height:1.65; max-width:60ch;}
+  .how-step-body h4{margin:0 0 8px; font-size:17px; font-weight:600;}
+  .how-step-body p{margin:0; color:var(--ink-dim); font-size:15px; line-height:1.65;}
+
+  /* ---------- OUR TEAM ---------- */
+  .team-lead{
+    display:grid; grid-template-columns:1fr; border:1px solid var(--line); background:var(--bg-2); margin-bottom:1px;
+  }
+  @media(min-width:760px){.team-lead{grid-template-columns:280px 1fr;}}
+  .team-lead .photo, .team-card .photo{
+    aspect-ratio:1/1; background:var(--bg-3);
+    display:flex; align-items:center; justify-content:center;
+    background-image:
+      repeating-conic-gradient(rgba(245,241,230,0.03) 0% 25%, transparent 0% 50%);
+    background-size:24px 24px;
+    position:relative; overflow:hidden;
+  }
+  .team-lead .photo::before, .team-card .photo::before{
+    content:"♞"; font-size:64px; color:var(--gold-dim);
+  }
+  .team-lead .content{padding:36px 34px; display:flex; flex-direction:column; justify-content:center;}
+  .team-lead .role{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
+  .team-lead h3{font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; font-size:28px; font-weight:700; margin:0 0 14px;}
+  .team-lead p{color:var(--ink-dim); font-size:15.5px; line-height:1.7; margin:0; max-width:56ch;}
+
+  .team-grid{display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-top:none;}
+  @media(min-width:640px){.team-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:960px){.team-grid{grid-template-columns:repeat(3,1fr);}}
+  .team-card{background:var(--bg-2);}
+  .team-card .photo::before{font-size:44px;}
+  .team-card .body{padding:22px 24px;}
+  .team-card .name{font-size:16px; font-weight:600; margin-bottom:4px;}
+  .team-card .role{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
+  .team-card p{color:var(--ink-dim); font-size:14px; line-height:1.6; margin:0;}
+  .team-note{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-dim); margin-top:18px;}
 
   /* ---------- FIXTURE NIGHT / CROSSTABLE ---------- */
-  .table-frame{border:1px solid var(--line); background:var(--board-dark-2);}
+  .table-frame{border:1px solid var(--line); background:var(--bg-2);}
   .table-frame-head{display:flex; align-items:center; justify-content:space-between; padding:18px 24px; border-bottom:1px solid var(--line); flex-wrap:wrap; gap:10px;}
   .table-frame-head .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; color:var(--ink-dim); text-transform:uppercase;}
-  .table-frame-head .tag em{color:var(--brass); font-style:normal;}
+  .table-frame-head .tag em{color:var(--gold); font-style:normal;}
   table{width:100%; border-collapse:collapse; font-family:'IBM Plex Mono',monospace; font-size:13.5px;}
   thead th{text-align:left; padding:14px 24px; color:var(--ink-dim); font-weight:500; letter-spacing:0.06em; text-transform:uppercase; font-size:11px; border-bottom:1px solid var(--line);}
   tbody td{padding:15px 24px; border-bottom:1px solid var(--line);}
   tbody tr:last-child td{border-bottom:none;}
-  tbody tr:hover{background:rgba(247,242,230,0.03);}
-  td.rank{color:var(--brass); font-weight:600; width:40px;}
-  tr.rank-1 td.rank{color:var(--clock-red);}
+  tbody tr:hover{background:rgba(245,241,230,0.03);}
+  td.rank{color:var(--gold); font-weight:600; width:40px;}
+  tr.rank-1 td.rank{color:var(--gold-bright);}
   td.school{color:var(--ink); font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:14.5px;}
   td.num{text-align:right;}
   th.num{text-align:right;}
@@ -172,22 +251,22 @@
   /* ---------- REGIONS ---------- */
   .region-grid{display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
   @media(min-width:760px){.region-grid{grid-template-columns:1fr 1fr;}}
-  .region-col{background:var(--board-dark-2); padding:34px 30px;}
+  .region-col{background:var(--bg-2); padding:34px 30px;}
   .region-col .rtag{font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:16px;}
-  .region-col.now .rtag{color:var(--clock-red);}
-  .region-col.next .rtag{color:var(--brass);}
+  .region-col.now .rtag{color:var(--gold-bright);}
+  .region-col.next .rtag{color:var(--gold);}
   .chiplist{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
   .chip{
     border:1px solid var(--line); padding:8px 14px; font-size:13px; font-family:'IBM Plex Mono',monospace;
     color:var(--ink-dim); border-radius:var(--radius);
   }
-  .region-col.now .chip{border-color:var(--clock-red-dim); color:var(--ink);}
+  .region-col.now .chip{border-color:var(--gold-dim); color:var(--ink);}
   .region-col h3{font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; font-size:24px; margin:0 0 10px; font-weight:700;}
   .region-col p{color:var(--ink-dim); font-size:15px; line-height:1.6; margin:0;}
 
   /* ---------- CTA / FOOTER ---------- */
   .cta-band{
-    background:linear-gradient(180deg, var(--board-dark-2), var(--board-dark));
+    background:linear-gradient(180deg, var(--bg-2), var(--bg));
     border-top:1px solid var(--line); text-align:left;
     padding:90px 0;
   }
@@ -199,18 +278,19 @@
   .foot-note{color:var(--ink-dim); font-size:13px; font-family:'IBM Plex Mono',monospace;}
   .foot-links{display:flex; gap:22px; font-size:13px; color:var(--ink-dim);}
   .foot-links a{text-decoration:none;}
-  .foot-links a:hover{color:var(--brass);}
+  .foot-links a:hover{color:var(--gold);}
 </style>
 </head>
 <body>
 
 <header>
   <div class="nav">
-    <div class="logo"><span class="sq"></span> ICL</div>
+    <div class="logo"><img src="imgs/logo.jpg" alt="ICL crest"> ICL</div>
     <nav class="navlinks">
       <a href="#league">The League</a>
+      <a href="#events">Past Events</a>
       <a href="#how">How It Works</a>
-      <a href="#fixtures">Fixtures</a>
+      <a href="#team">Our Team</a>
       <a href="#regions">Regions</a>
     </nav>
     <a href="#join" class="btn btn-primary">Register a Team</a>
@@ -219,9 +299,10 @@
 
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="wrap">
+  <div class="wrap hero-inner">
+    <img src="imgs/logo.jpg" alt="InterSchool Chess League crest" class="hero-logo">
     <div class="eyebrow">Tashkent · Blitz Night</div>
-    <h1 class="display">Three boards.<br>Three minutes.<br><span class="red">One school on the line.</span></h1>
+    <h1 class="display">Three boards. Three minutes.<br><span class="gold-text">One school on the line.</span></h1>
     <p class="lead">The InterSchool Chess League brings the strongest school teams in Uzbekistan together for high-intensity blitz tournaments — built to unite young talent, grow a real chess culture, and expand across Central Asia.</p>
     <div class="hero-cta">
       <a href="#join" class="btn btn-primary">Register Your School</a>
@@ -269,24 +350,162 @@
   </div>
 </section>
 
-<section class="boards" id="how">
-  <div class="wrap" style="padding-top:86px; padding-bottom:0;">
+<section id="events">
+  <div class="wrap">
     <div class="section-head">
-      <h2>How It Works</h2>
-      <p>Every match is organized the way club and national team chess is organized: by board. Here's what a school signs up for.</p>
+      <h2>Our Past Events</h2>
+      <p>Tournament nights, floor-sized boards, and schools walking away with medals — a look back at the league so far.</p>
+    </div>
+    <div class="slider-wrap">
+      <div class="slider" id="eventSlider">
+        <div class="slide">
+          <img class="thumb" src="imgs/event-icleague.jpg" alt="Students gathered at the ICLeague launch event">
+          <div class="slide-body">
+            <div class="slide-tag">Tashkent, Uzbekistan</div>
+            <h3>ICL Launch Night</h3>
+            <p>The founding schools met for the first time under the ICL name — the kickoff for a full tournament season.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="thumb" src="imgs/event-chessboard.jpg" alt="Students standing on a giant life-size chessboard">
+          <div class="slide-body">
+            <div class="slide-tag">Life-Size Board</div>
+            <h3>Board Room Meet-Up</h3>
+            <p>Teams gathered on a full-scale floor chessboard for a walkthrough of the format before tournament play began.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="thumb" src="imgs/event-medals.jpg" alt="Three players holding gold medals and certificates">
+          <div class="slide-body">
+            <div class="slide-tag">Podium</div>
+            <h3>Board 1 Champions</h3>
+            <p>First-place finishers from the top boards, medals in hand after a night of blitz chess.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="thumb" src="imgs/event-flags.jpg" alt="Students seated with certificates in front of national flags">
+          <div class="slide-body">
+            <div class="slide-tag">International Field</div>
+            <h3>Regional Showcase</h3>
+            <p>Flags from across the region backdrop the podium — a preview of the Central Asian circuit ICL is building toward.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="thumb" src="imgs/event-certificates.jpg" alt="Group of students holding certificates of achievement">
+          <div class="slide-body">
+            <div class="slide-tag">Award Ceremony</div>
+            <h3>Certificates of Achievement</h3>
+            <p>Every competing player left with recognition for their board results, not just the top finishers.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="thumb" src="imgs/event-presidential.jpg" alt="Students holding certificates on the steps of a school building">
+          <div class="slide-body">
+            <div class="slide-tag">Presidential School</div>
+            <h3>Host School Fixture</h3>
+            <p>One of the league's founding venues, opening its doors for a full tournament day.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="thumb" src="imgs/event-amphitheater.jpg" alt="Large group of students seated together after a tournament">
+          <div class="slide-body">
+            <div class="slide-tag">Season Wrap</div>
+            <h3>Full-League Gathering</h3>
+            <p>Players from every participating school together in one room to close out the tournament cycle.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img class="thumb" src="imgs/event-library.jpg" alt="Students holding certificates in a school library">
+          <div class="slide-body">
+            <div class="slide-tag">School Circuit</div>
+            <h3>Local Qualifiers</h3>
+            <p>Smaller in-school rounds that feed players into the wider ICL tournament calendar.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slider-controls">
+        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-btn" id="prevBtn" aria-label="Previous events">←</button>
+        <button class="slider-btn" id="nextBtn" aria-label="Next events">→</button>
+      </div>
     </div>
   </div>
-  <div class="board-row">
-    <div class="board-label"><div class="board-chip">B1</div><div class="lbl">Field Your Team</div></div>
-    <div class="board-body"><h4>Three players, one lineup.</h4><p>Each school enters a team of three players, seated Board 1 through Board 3 in order of strength. That order is set before the tournament and holds for the night.</p></div>
+</section>
+
+<section class="how-section" id="how">
+  <div class="how-grid">
+    <div class="how-image" role="img" aria-label="Students playing blitz chess across several boards at a tournament"></div>
+    <div class="how-steps">
+      <div class="section-head">
+        <h2>How It Works</h2>
+        <p>Every match is organized the way club and national team chess is organized: by board. Here's what a school signs up for.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-chip">B1</div>
+        <div class="how-step-body">
+          <h4>Field your team — three players, one lineup.</h4>
+          <p>Each school enters a team of three players, seated Board 1 through Board 3 in order of strength. That order is set before the tournament and holds for the night.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-chip">B2</div>
+        <div class="how-step-body">
+          <h4>Show up and play — board by board.</h4>
+          <p>Board 1 plays Board 1, Board 2 plays Board 2, Board 3 plays Board 3. Teams meet at the venue and play their assigned board order against the opposing school, blitz time controls, over the board — no substitutions mid-match.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <div class="how-chip">B3</div>
+        <div class="how-step-body">
+          <h4>Standings go up — results the same night.</h4>
+          <p>Board results, match scores, and tournament highlights are compiled and shared right after the final game finishes — so every school knows exactly where it stands.</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="board-row">
-    <div class="board-label"><div class="board-chip">B2</div><div class="lbl">Show Up & Play</div></div>
-    <div class="board-body"><h4>Board 1 plays Board 1. Board 2 plays Board 2. Board 3 plays Board 3.</h4><p>Teams arrive at the venue and play their assigned board order against the opposing school, blitz time controls, over the board — no substitutions mid-match.</p></div>
-  </div>
-  <div class="board-row">
-    <div class="board-label"><div class="board-chip">B3</div><div class="lbl">Standings Go Up</div></div>
-    <div class="board-body"><h4>Results the same night.</h4><p>Board results, match scores, and tournament highlights are compiled and shared right after the final game finishes — so every school knows exactly where it stands.</p></div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Our Team</h2>
+      <p>The students organizing tournament nights, standings, and outreach behind ICL.</p>
+    </div>
+    <div class="team-lead">
+      <div class="photo"></div>
+      <div class="content">
+        <div class="role">Founder</div>
+        <h3>Add Founder Name</h3>
+        <p>Swap in the founder's photo and a short note on why ICL exists — the idea, the first tournament, and where the league is headed next.</p>
+      </div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="photo"></div>
+        <div class="body">
+          <div class="name">Add Name</div>
+          <div class="role">Co-Founder</div>
+          <p>Short line on what this person leads within ICL.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="photo"></div>
+        <div class="body">
+          <div class="name">Add Name</div>
+          <div class="role">Head of Operations</div>
+          <p>Short line on what this person leads within ICL.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="photo"></div>
+        <div class="body">
+          <div class="name">Add Name</div>
+          <div class="role">Tournament Director</div>
+          <p>Short line on what this person leads within ICL.</p>
+        </div>
+      </div>
+    </div>
+    <div class="team-note">Placeholder photos and roles — swap in real team names, photos, and titles.</div>
   </div>
 </section>
 
@@ -353,7 +572,7 @@
   <div class="wrap">
     <h2>Bring your school to the board.</h2>
     <p>Field three players, show up to blitz night, and see your school's name on the crosstable. New schools join every tournament cycle.</p>
-    <div class="hero-cta">
+    <div class="hero-cta" style="justify-content:flex-start;">
       <a href="mailto:hello@yourdomain.example" class="btn btn-primary">Register Your School</a>
       <a href="#how" class="btn btn-ghost">Read the Format</a>
     </div>
@@ -365,8 +584,9 @@
     <div class="foot-note">ICL — INTERSCHOOL CHESS LEAGUE</div>
     <div class="foot-links">
       <a href="#league">The League</a>
+      <a href="#events">Past Events</a>
       <a href="#how">Format</a>
-      <a href="#fixtures">Fixtures</a>
+      <a href="#team">Team</a>
       <a href="#regions">Regions</a>
     </div>
     <div class="foot-note">© <span id="yr"></span> ICL</div>
@@ -399,7 +619,6 @@
         tB -= 1;
         if(tB <= 0){ tA = 180; tB = 180; turn = 'A'; }
       }
-      // small chance to "switch move" to feel alive, roughly every ~7s
       if(Math.random() < 0.14){ turn = (turn === 'A') ? 'B' : 'A'; }
 
       a.textContent = fmt(tA);
@@ -409,6 +628,50 @@
       sideA.querySelector('.clock-flag').textContent = turn === 'A' ? 'to move' : 'waiting';
       sideB.querySelector('.clock-flag').textContent = turn === 'B' ? 'to move' : 'waiting';
     }, 1000);
+  })();
+
+  // Past Events slider
+  (function(){
+    var slider = document.getElementById('eventSlider');
+    var prev = document.getElementById('prevBtn');
+    var next = document.getElementById('nextBtn');
+    var dotsWrap = document.getElementById('sliderDots');
+    var slides = slider.querySelectorAll('.slide');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    slides.forEach(function(_, i){
+      var d = document.createElement('span');
+      if(i === 0) d.classList.add('on');
+      dotsWrap.appendChild(d);
+    });
+    var dots = dotsWrap.querySelectorAll('span');
+
+    function step(dir){
+      var w = slides[0].getBoundingClientRect().width + 20;
+      slider.scrollBy({left: dir * w, behavior: reduce ? 'auto' : 'smooth'});
+    }
+    prev.addEventListener('click', function(){ step(-1); });
+    next.addEventListener('click', function(){ step(1); });
+
+    function updateDots(){
+      var scrollLeft = slider.scrollLeft;
+      var w = slides[0].getBoundingClientRect().width + 20;
+      var idx = Math.round(scrollLeft / w);
+      dots.forEach(function(d, i){ d.classList.toggle('on', i === idx); });
+    }
+    slider.addEventListener('scroll', function(){
+      window.requestAnimationFrame(updateDots);
+    }, {passive:true});
+
+    if(!reduce){
+      var autoplay = setInterval(function(){
+        var atEnd = Math.ceil(slider.scrollLeft + slider.clientWidth) >= slider.scrollWidth;
+        if(atEnd){ slider.scrollTo({left:0, behavior:'smooth'}); }
+        else { step(1); }
+      }, 4500);
+      slider.addEventListener('mouseenter', function(){ clearInterval(autoplay); });
+      slider.addEventListener('touchstart', function(){ clearInterval(autoplay); }, {passive:true});
+    }
   })();
 </script>
 
